@@ -9,6 +9,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,20 +22,21 @@ import it.jaschke.alexandria.data.AlexandriaContract;
 import it.jaschke.alexandria.services.BookService;
 import it.jaschke.alexandria.services.DownloadImage;
 
-
 public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
-    private static final String TAG = "INTENT_TO_SCAN_ACTIVITY";
+
+    private static final String TAG = AddBook.class.getSimpleName();
+
     private EditText ean;
     private final int LOADER_ID = 1;
     private View rootView;
     private final String EAN_CONTENT="eanContent";
-    private static final String SCAN_FORMAT = "scanFormat";
-    private static final String SCAN_CONTENTS = "scanContents";
+    public static final String SCAN_FORMAT = "scanFormat";
+    public static final String SCAN_CONTENTS = "scanContents";
 
     private String mScanFormat = "Format:";
     private String mScanContents = "Contents:";
 
-
+    static final int SCAN_BARCODE_REQUEST = 1;
 
     public AddBook(){
     }
@@ -66,16 +68,19 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
             @Override
             public void afterTextChanged(Editable s) {
-                String ean =s.toString();
-                //catch isbn10 numbers
-                if(ean.length()==10 && !ean.startsWith("978")){
-                    ean="978"+ean;
+                String ean = s.toString();
+
+                // catch isbn10 numbers
+                if (ean.length() == 10 && !ean.startsWith("978")) {
+                    ean = "978" + ean;
                 }
-                if(ean.length()<13){
+
+                if (ean.length() < 13) {
                     clearFields();
                     return;
                 }
-                //Once we have an ISBN, start a book intent
+
+                // Once we have an ISBN, start a book intent
                 Intent bookIntent = new Intent(getActivity(), BookService.class);
                 bookIntent.putExtra(BookService.EAN, ean);
                 bookIntent.setAction(BookService.FETCH_BOOK);
@@ -89,19 +94,13 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
             public void onClick(View v) {
                 // This is the callback method that the system will invoke when your button is
                 // clicked. You might do this by launching another app or by including the
-                //functionality directly in this app.
+                // functionality directly in this app.
                 // Hint: Use a Try/Catch block to handle the Intent dispatch gracefully, if you
                 // are using an external app.
-                //when you're done, remove the toast below.
-//                Context context = getActivity();
-//                CharSequence text = "This button should let you scan a book for its barcode!";
-//                int duration = Toast.LENGTH_SHORT;
-//
-//                Toast toast = Toast.makeText(context, text, duration);
-//                toast.show();
+                // when you're done, remove the toast below.
 
                 Intent intent = new Intent(getActivity(), ScanActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, SCAN_BARCODE_REQUEST);
             }
         });
 
@@ -137,13 +136,20 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
     @Override
     public android.support.v4.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        if(ean.getText().length()==0){
+        if (ean.getText().length() == 0) {
             return null;
         }
-        String eanStr= ean.getText().toString();
-        if(eanStr.length()==10 && !eanStr.startsWith("978")){
-            eanStr="978"+eanStr;
+
+        // In special case of "X" character at the bottom.
+        if (ean.getText().toString().toLowerCase().contains("X")) {
+            return null;
         }
+
+        String eanStr = ean.getText().toString();
+        if (eanStr.length() == 10 && !eanStr.startsWith("978")) {
+            eanStr = "978" + eanStr;
+        }
+
         return new CursorLoader(
                 getActivity(),
                 AlexandriaContract.BookEntry.buildFullBookUri(Long.parseLong(eanStr)),
@@ -160,24 +166,38 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
             return;
         }
 
+        // Title
         String bookTitle = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.TITLE));
-        ((TextView) rootView.findViewById(R.id.bookTitle)).setText(bookTitle);
+        if (bookTitle != null)
+            ((TextView) rootView.findViewById(R.id.bookTitle)).setText(bookTitle);
 
+        // Sub Title
         String bookSubTitle = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.SUBTITLE));
-        ((TextView) rootView.findViewById(R.id.bookSubTitle)).setText(bookSubTitle);
+        if (bookSubTitle != null)
+            ((TextView) rootView.findViewById(R.id.bookSubTitle)).setText(bookSubTitle);
 
+        // Author
         String authors = data.getString(data.getColumnIndex(AlexandriaContract.AuthorEntry.AUTHOR));
-        String[] authorsArr = authors.split(",");
-        ((TextView) rootView.findViewById(R.id.authors)).setLines(authorsArr.length);
-        ((TextView) rootView.findViewById(R.id.authors)).setText(authors.replace(",","\n"));
-        String imgUrl = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.IMAGE_URL));
-        if(Patterns.WEB_URL.matcher(imgUrl).matches()){
-            new DownloadImage((ImageView) rootView.findViewById(R.id.bookCover)).execute(imgUrl);
-            rootView.findViewById(R.id.bookCover).setVisibility(View.VISIBLE);
+        if (authors != null) {
+            String[] authorsArr = authors.split(",");
+            ((TextView) rootView.findViewById(R.id.authors)).setLines(authorsArr.length);
+            ((TextView) rootView.findViewById(R.id.authors)).setText(authors.replace(",","\n"));
         }
 
+        // Image URL
+        String imgUrl = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.IMAGE_URL));
+        if (imgUrl != null) {
+            if(Patterns.WEB_URL.matcher(imgUrl).matches()){
+                new DownloadImage((ImageView) rootView.findViewById(R.id.bookCover)).execute(imgUrl);
+                rootView.findViewById(R.id.bookCover).setVisibility(View.VISIBLE);
+            }
+        }
+
+        // Category
         String categories = data.getString(data.getColumnIndex(AlexandriaContract.CategoryEntry.CATEGORY));
-        ((TextView) rootView.findViewById(R.id.categories)).setText(categories);
+        if (categories != null) {
+            ((TextView) rootView.findViewById(R.id.categories)).setText(categories);
+        }
 
         rootView.findViewById(R.id.save_button).setVisibility(View.VISIBLE);
         rootView.findViewById(R.id.delete_button).setVisibility(View.VISIBLE);
@@ -202,5 +222,29 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         activity.setTitle(R.string.scan);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        // Check which request we're responding to
+        if (requestCode == SCAN_BARCODE_REQUEST) {
+
+            // Make sure the request was successful
+            if (resultCode == Activity.RESULT_OK) {
+
+                // The barcode scanned is well.
+                Bundle bundle = data.getExtras();
+                String eanContent   = bundle.getString(SCAN_CONTENTS);
+                String eanFormat    = bundle.getString(SCAN_FORMAT);
+
+                // Update scanned code.
+                ean.setText(eanContent);
+
+                // Debug
+                Log.v(TAG, eanContent);
+                Log.v(TAG, eanFormat);
+            }
+        }
     }
 }

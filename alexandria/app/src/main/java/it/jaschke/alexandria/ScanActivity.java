@@ -1,6 +1,7 @@
 package it.jaschke.alexandria;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -50,6 +51,13 @@ public class ScanActivity extends Activity implements ZBarScannerView.ResultHand
         Log.v(TAG, rawResult.getContents()); // Prints scan results
         Log.v(TAG, rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode, pdf417 etc.)
 
+
+        Intent data = new Intent();
+        data.putExtra(AddBook.SCAN_CONTENTS, rawResult.getContents());
+        data.putExtra(AddBook.SCAN_FORMAT,   rawResult.getBarcodeFormat().toString());
+
+        // Activity finished ok, return the data
+        setResult(RESULT_OK, data);
         finish();
     }
 }
