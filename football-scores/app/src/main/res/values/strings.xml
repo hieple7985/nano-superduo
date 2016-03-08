@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name" translatable="false">Football Scores</string>
-    <string name="hello_world" translatable="false">Hello world!</string>
-    <string name="action_settings" translatable="false">Settings</string>
-    <string name="test_text" translatable="false">Test</string>
-    <string name="today" translatable="false">Today</string>
-    <string name="yesterday" translatable="false">Yesterday</string>
-    <string name="tomorrow" translatable="false">Tomorrow</string>
-    <string name="champions_league" translatable="false">UEFA Champions League</string>
-    <string name="bundesliga" translatable="false">Bundesliga</string>
-    <string name="premierleague" translatable="false">Premier League</string>
-    <string name="primeradivison" translatable="false">Primera Division</string>
-    <string name="seriaa" translatable="false">Serie A</string>
-    <string name="matchday_text" translatable="false">Match day</string>
-    <string name="group_stage_text" translatable="false">Group stages</string>
-    <string name="first_knockout_round" translatable="false">First knockout round</string>
-    <string name="quarter_final" translatable="false">Quarter Final</string>
-    <string name="semi_final" translatable="false">Semi Final</string>
-    <string name="final_text" translatable="false">Final</string>
-    <string name="share_text" translatable="false">Share</string>
-    <string name="about" translatable="false">About</string>
-    <string name="title_activity_about" translatable="false">AboutActivity</string>
-    <string name="about_text" translatable="false">
+    <!-- App -->
+    <string name="app_name"                 translatable="false">Football Scores</string>
+    <string name="hello_world"              translatable="false">Hello world!</string>
+
+    <!-- Main Screen -->
+    <string name="action_settings"          translatable="false">Settings</string>
+    <string name="test_text"                translatable="false">Test</string>
+    <string name="today"                    translatable="false">Today</string>
+    <string name="yesterday"                translatable="false">Yesterday</string>
+    <string name="tomorrow"                 translatable="false">Tomorrow</string>
+    <string name="champions_league"         translatable="false">UEFA Champions League</string>
+    <string name="bundesliga"               translatable="false">Bundesliga</string>
+    <string name="premierleague"            translatable="false">Premier League</string>
+    <string name="primeradivison"           translatable="false">Primera Division</string>
+    <string name="seriaa"                   translatable="false">Serie A</string>
+    <string name="matchday_text"            translatable="false">Match day</string>
+    <string name="group_stage_text"         translatable="false">Group stages</string>
+    <string name="first_knockout_round"     translatable="false">First knockout round</string>
+    <string name="quarter_final"            translatable="false">Quarter Final</string>
+    <string name="semi_final"               translatable="false">Semi Final</string>
+    <string name="final_text"               translatable="false">Final</string>
+    <string name="share_text"               translatable="false">Share</string>
+    <string name="mock_text_team_1"         translatable="false">Team 1</string>
+    <string name="mock_text_team_2"         translatable="false">Team 2</string>
+
+    <!-- About Screen -->
+    <string name="about"                    translatable="false">About</string>
+    <string name="title_activity_about"     translatable="false">AboutActivity</string>
+    <string name="about_text"               translatable="false">
         This Application get Football Matches Score for the Premier League,Seria A,Bundesliga,Primera Division
         and the Uefa Champions League.
         All Matches data are acquired from football-data.org free API.
@@ -32,7 +39,18 @@
 
         During the off season, fake data will be added to the app.
     </string>
-    <string name="widget_text" translatable="false">This is a widget probably.</string>
-    <string name="api_key" translatable="false">77430db60bd44f368f6c56dbe6ba1d96</string>
-    <string name="dummy_data" translatable="false">{\"timeFrameStart\":\"2015-06-18\",\"timeFrameEnd\":\"2015-06-19\",\"count\":1,\"fixtures\":[{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}}]}</string>
+    <string name="widget_text"              translatable="false">This is a widget probably.</string>
+    <string name="api_key"                  translatable="false">77430db60bd44f368f6c56dbe6ba1d96</string>
+    <string name="dummy_data"               translatable="false">
+        {\"timeFrameStart\":\"2015-06-18\",\"timeFrameEnd\":\"2015-06-19\",\"count\":1,\"fixtures\":[{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}}]}
+    </string>
+
+    <!-- Widget -->
+    <!-- Default : Old -->
+    <string name="appwidget_text"           translatable="false">EXAMPLE</string>
+    <string name="add_widget"               translatable="false">Add widget</string>
+
+    <!-- New Layout -->
+    <string name="day_widget_choose_date"   translatable="false">Choose date</string>
+
 </resources>
