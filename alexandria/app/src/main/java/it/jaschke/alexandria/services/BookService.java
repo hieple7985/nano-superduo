@@ -2,11 +2,16 @@ package it.jaschke.alexandria.services;
 
 import android.app.IntentService;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -91,6 +96,11 @@ public class BookService extends IntentService {
 
         bookEntry.close();
 
+        if (!isNetworkAvailable()) {
+            displayUIMessage(getResources().getString(R.string.no_network));
+            return;
+        }
+
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
         String bookJsonString = null;
@@ -130,6 +140,7 @@ public class BookService extends IntentService {
             bookJsonString = buffer.toString();
         } catch (Exception e) {
             Log.e(LOG_TAG, "Error ", e);
+            displayUIMessage("Network error. Can't fetch books.");
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -229,5 +240,20 @@ public class BookService extends IntentService {
             getContentResolver().insert(AlexandriaContract.CategoryEntry.CONTENT_URI, values);
             values= new ContentValues();
         }
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    private void displayUIMessage(final String message) {
+        new Handler(getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+            }
+        });
     }
  }
