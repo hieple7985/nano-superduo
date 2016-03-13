@@ -12,7 +12,7 @@ import barqsoft.footballscores.DatabaseContract.scores_table;
 public class ScoresDBHelper extends SQLiteOpenHelper
 {
     public static final String DATABASE_NAME = "Scores.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 6;
     public ScoresDBHelper(Context context)
     {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -24,6 +24,7 @@ public class ScoresDBHelper extends SQLiteOpenHelper
         final String CreateScoresTable = "CREATE TABLE " + DatabaseContract.SCORES_TABLE + " ("
                 + scores_table._ID + " INTEGER PRIMARY KEY,"
                 + scores_table.DATE_COL + " TEXT NOT NULL,"
+                + scores_table.STATUS_COL + " TEXT NOT NULL,"
                 + scores_table.TIME_COL + " INTEGER NOT NULL,"
                 + scores_table.HOME_COL + " TEXT NOT NULL,"
                 + scores_table.AWAY_COL + " TEXT NOT NULL,"

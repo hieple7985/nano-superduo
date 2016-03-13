@@ -14,16 +14,20 @@ import android.widget.TextView;
  * Created by yehya khaled on 2/26/2015.
  */
 public class ScoresAdapter extends CursorAdapter {
-    public static final int COL_HOME = 3;
-    public static final int COL_AWAY = 4;
-    public static final int COL_HOME_GOALS = 6;
-    public static final int COL_AWAY_GOALS = 7;
-    public static final int COL_DATE = 1;
-    public static final int COL_LEAGUE = 5;
-    public static final int COL_MATCHDAY = 9;
-    public static final int COL_ID = 8;
-    public static final int COL_MATCHTIME = 2;
+
     public double detail_match_id = 0;
+    public static final int COL_DATE = 1;
+    public static final int COL_STATUS = 2;
+    public static final int COL_MATCHTIME = 3;
+    public static final int COL_HOME = 4;
+    public static final int COL_AWAY = 5;
+    public static final int COL_LEAGUE = 6;
+    public static final int COL_HOME_GOALS = 7;
+    public static final int COL_AWAY_GOALS = 8;
+    public static final int COL_ID = 9;
+    public static final int COL_MATCHDAY = 10;
+
+
     private String FOOTBALL_SCORES_HASHTAG = "#Football_Scores";
 
     public ScoresAdapter(Context context, Cursor cursor, int flags) {
@@ -44,14 +48,13 @@ public class ScoresAdapter extends CursorAdapter {
         final ViewHolder mHolder = (ViewHolder) view.getTag();
         mHolder.home_name.setText(cursor.getString(COL_HOME));
         mHolder.away_name.setText(cursor.getString(COL_AWAY));
-        mHolder.date.setText(cursor.getString(COL_MATCHTIME));
+        mHolder.status.setText(cursor.getString(COL_STATUS));
+        mHolder.time.setText(cursor.getString(COL_MATCHTIME));
+        mHolder.date.setText(cursor.getString(COL_DATE));
         mHolder.score.setText(Utilities.getScores(cursor.getInt(COL_HOME_GOALS), cursor.getInt(COL_AWAY_GOALS)));
         mHolder.match_id = cursor.getDouble(COL_ID);
-        mHolder.home_crest.setImageResource(Utilities.getTeamCrestByTeamName(
-                cursor.getString(COL_HOME)));
-        mHolder.away_crest.setImageResource(Utilities.getTeamCrestByTeamName(
-                cursor.getString(COL_AWAY)
-        ));
+        mHolder.home_crest.setImageResource(Utilities.getTeamCrestByTeamName(cursor.getString(COL_HOME)));
+        mHolder.away_crest.setImageResource(Utilities.getTeamCrestByTeamName(cursor.getString(COL_AWAY)));
 
         // Log.v(FetchScoreTask.LOG_TAG,mHolder.home_name.getText() + " Vs. " + mHolder.away_name.getText() +" id " + String.valueOf(mHolder.match_id));
         // Log.v(FetchScoreTask.LOG_TAG,String.valueOf(detail_match_id));
