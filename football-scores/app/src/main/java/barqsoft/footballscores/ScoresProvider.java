@@ -21,11 +21,11 @@ public class ScoresProvider extends ContentProvider
     private UriMatcher muriMatcher = buildUriMatcher();
     private static final SQLiteQueryBuilder ScoreQuery =
             new SQLiteQueryBuilder();
-    private static final String SCORES_BY_LEAGUE = DatabaseContract.scores_table.LEAGUE_COL + " = ?";
+    private static final String SCORES_BY_LEAGUE = DatabaseContract.scores_table.COL_LEAGUE + " = ?";
     private static final String SCORES_BY_DATE =
-            DatabaseContract.scores_table.DATE_COL + " LIKE ?";
+            DatabaseContract.scores_table.COL_DATE + " LIKE ?";
     private static final String SCORES_BY_ID =
-            DatabaseContract.scores_table.MATCH_ID + " = ?";
+            DatabaseContract.scores_table.COL_MATCH_ID + " = ?";
 
 
     static UriMatcher buildUriMatcher() {

@@ -46,11 +46,22 @@
     </string>
 
     <!-- Widget -->
-    <!-- Default : Old -->
-    <string name="appwidget_text"           translatable="false">EXAMPLE</string>
-    <string name="add_widget"               translatable="false">Add widget</string>
 
-    <!-- New Layout -->
-    <string name="day_widget_choose_date"   translatable="false">Choose date</string>
+    <string name="football_widget">Football Widget</string>
+    <string name="widget_subtitle">SCORES</string>
+    <string name="league_content_desc">Shows the league name </string>
+    <string name="match_day_content_desc">Shows the match day</string>
+    <string name="share_button_content_desc">Button to share info matches by using share provider</string>
+    <string name="widget_icon_image_content_desc">App icon for widget</string>
+    <string name="widget_title_content_desc">Shows the widget app name </string>
+    <string name="widget_subtitle_content_desc">Shows the widget subtitle name </string>
+    <string name="widget_matches_list">List to show matches scores </string>
+    <string name="about_content_desc">Talks about app development and developers</string>
+    <string name="image_home_crest_content_desc">Image to show icon of home team</string>
+    <string name="home_name_content_desc">Show name home team</string>
+    <string name="score_content_desc">Shows final score of match</string>
+    <string name="image_away_crest_content_desc">Image to show icon of away team </string>
+    <string name="away_name_content_desc">Show name away team </string>
+    <string name="date_content_desc">Shows data of match</string>
 
 </resources>

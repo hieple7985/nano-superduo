@@ -176,8 +176,7 @@ public class MyFetchService extends IntentService {
             for (int i = 0; i < matches.length(); i++) {
 
                 JSONObject match_data = matches.getJSONObject(i);
-                League = match_data.getJSONObject(LINKS).getJSONObject(SOCCER_SEASON).
-                        getString("href");
+                League = match_data.getJSONObject(LINKS).getJSONObject(SOCCER_SEASON).getString("href");
                 League = League.replace(SEASON_LINK, "");
 
                 // This if statement controls which leagues we're interested in the data from.
@@ -212,7 +211,7 @@ public class MyFetchService extends IntentService {
                         mDate = mDate.substring(0, mDate.indexOf(":"));
 
                         if (!isReal) {
-                            //This if statement changes the dummy data's date to match our current date range.
+                            // This if statement changes the dummy data's date to match our current date range.
                             Date fragmentdate = new Date(System.currentTimeMillis() + ((i - 2) * 86400000));
                             SimpleDateFormat mformat = new SimpleDateFormat("yyyy-MM-dd");
                             mDate = mformat.format(fragmentdate);
@@ -228,25 +227,16 @@ public class MyFetchService extends IntentService {
                     Away_goals = match_data.getJSONObject(RESULT).getString(AWAY_GOALS);
                     match_day = match_data.getString(MATCH_DAY);
                     ContentValues match_values = new ContentValues();
-                    match_values.put(DatabaseContract.scores_table.MATCH_ID, match_id);
-                    match_values.put(DatabaseContract.scores_table.DATE_COL, mDate);
-                    match_values.put(DatabaseContract.scores_table.TIME_COL, mTime);
-                    match_values.put(DatabaseContract.scores_table.HOME_COL, Home);
-                    match_values.put(DatabaseContract.scores_table.AWAY_COL, Away);
-                    match_values.put(DatabaseContract.scores_table.HOME_GOALS_COL, Home_goals);
-                    match_values.put(DatabaseContract.scores_table.AWAY_GOALS_COL, Away_goals);
-                    match_values.put(DatabaseContract.scores_table.LEAGUE_COL, League);
-                    match_values.put(DatabaseContract.scores_table.MATCH_DAY, match_day);
-                    match_values.put(DatabaseContract.scores_table.STATUS_COL, mStatus);
-
-                    // log spam
-                    //Log.v(LOG_TAG,match_id);
-                    //Log.v(LOG_TAG,mDate);
-                    //Log.v(LOG_TAG,mTime);
-                    //Log.v(LOG_TAG,Home);
-                    //Log.v(LOG_TAG,Away);
-                    //Log.v(LOG_TAG,Home_goals);
-                    //Log.v(LOG_TAG,Away_goals);
+                    match_values.put(DatabaseContract.scores_table.COL_MATCH_ID, match_id);
+                    match_values.put(DatabaseContract.scores_table.COL_DATE, mDate);
+                    match_values.put(DatabaseContract.scores_table.COL_TIME, mTime);
+                    match_values.put(DatabaseContract.scores_table.COL_HOME_NAME, Home);
+                    match_values.put(DatabaseContract.scores_table.COL_AWAY_NAME, Away);
+                    match_values.put(DatabaseContract.scores_table.COL_HOME_GOALS, Home_goals);
+                    match_values.put(DatabaseContract.scores_table.COL_AWAY_GOALS, Away_goals);
+                    match_values.put(DatabaseContract.scores_table.COL_LEAGUE, League);
+                    match_values.put(DatabaseContract.scores_table.COL_MATCH_DAY, match_day);
+                    match_values.put(DatabaseContract.scores_table.COL_STATUS, mStatus);
 
                     values.add(match_values);
                 }

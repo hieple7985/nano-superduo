@@ -36,21 +36,21 @@
 
         <service android:name=".service.MyFetchService" />
 
-        <receiver android:name=".widget.DayAppWidget">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
+        <receiver
+            android:name=".widget.WidgetProvider"
+            android:label="@string/football_widget"
+            android:icon="@drawable/ic_launcher">
 
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/day_app_widget_info" />
+                android:resource="@xml/widget_provider"/>
         </receiver>
 
-        <activity android:name=".widget.DayAppWidgetConfigureActivity">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
-            </intent-filter>
-        </activity>
-    </application>
+        <service android:name=".service.RemoteViewsService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
 
+    </application>
 </manifest>

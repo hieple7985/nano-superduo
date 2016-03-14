@@ -1,5 +1,8 @@
 package barqsoft.footballscores;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by yehya khaled on 3/3/2015.
  */
@@ -69,10 +72,11 @@ public class Utilities
 
     public static int getTeamCrestByTeamName (String teamname)
     {
-        if (teamname==null){return R.drawable.no_icon;}
+        if (teamname == null) { return R.drawable.no_icon; }
         switch (teamname)
-        { //This is the set of icons that are currently in the app. Feel free to find and add more
-            //as you go.
+        {
+            // This is the set of icons that are currently in the app. Feel free to find and add more
+            // as you go.
             case "Arsenal London FC" : return R.drawable.arsenal;
             case "Manchester United FC" : return R.drawable.manchester_united;
             case "Swansea City" : return R.drawable.swansea_city_afc;
@@ -85,5 +89,9 @@ public class Utilities
             case "Stoke City FC" : return R.drawable.stoke_city;
             default: return R.drawable.no_icon;
         }
+    }
+
+    public static String getDateFormated(Date date) {
+        return new SimpleDateFormat("yyyy-MM-dd").format(date);
     }
 }

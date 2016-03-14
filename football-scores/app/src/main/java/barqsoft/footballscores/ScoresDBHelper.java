@@ -23,17 +23,17 @@ public class ScoresDBHelper extends SQLiteOpenHelper
     {
         final String CreateScoresTable = "CREATE TABLE " + DatabaseContract.SCORES_TABLE + " ("
                 + scores_table._ID + " INTEGER PRIMARY KEY,"
-                + scores_table.DATE_COL + " TEXT NOT NULL,"
-                + scores_table.STATUS_COL + " TEXT NOT NULL,"
-                + scores_table.TIME_COL + " INTEGER NOT NULL,"
-                + scores_table.HOME_COL + " TEXT NOT NULL,"
-                + scores_table.AWAY_COL + " TEXT NOT NULL,"
-                + scores_table.LEAGUE_COL + " INTEGER NOT NULL,"
-                + scores_table.HOME_GOALS_COL + " TEXT NOT NULL,"
-                + scores_table.AWAY_GOALS_COL + " TEXT NOT NULL,"
-                + scores_table.MATCH_ID + " INTEGER NOT NULL,"
-                + scores_table.MATCH_DAY + " INTEGER NOT NULL,"
-                + " UNIQUE ("+scores_table.MATCH_ID+") ON CONFLICT REPLACE"
+                + scores_table.COL_DATE + " TEXT NOT NULL,"
+                + scores_table.COL_STATUS + " TEXT NOT NULL,"
+                + scores_table.COL_TIME + " INTEGER NOT NULL,"
+                + scores_table.COL_HOME_NAME + " TEXT NOT NULL,"
+                + scores_table.COL_AWAY_NAME + " TEXT NOT NULL,"
+                + scores_table.COL_LEAGUE + " INTEGER NOT NULL,"
+                + scores_table.COL_HOME_GOALS + " TEXT NOT NULL,"
+                + scores_table.COL_AWAY_GOALS + " TEXT NOT NULL,"
+                + scores_table.COL_MATCH_ID + " INTEGER NOT NULL,"
+                + scores_table.COL_MATCH_DAY + " INTEGER NOT NULL,"
+                + " UNIQUE ("+scores_table.COL_MATCH_ID +") ON CONFLICT REPLACE"
                 + " );";
         db.execSQL(CreateScoresTable);
     }
