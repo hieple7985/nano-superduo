@@ -28,7 +28,7 @@
 
 # Setup & Dependencies
 - com.android.support:appcompat-v7:21.0.3
-- 
+
 ## Alexandria
 - minSdkVersion 15
 
