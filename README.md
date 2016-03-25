@@ -26,7 +26,14 @@
 ## Football Scores
 - No Required
 
-# Setup & Dependencies
+# Setup & Installation
+Step 1:
+
+      git clone https://github.com/hieple7985/nano-superduo.git
+
+Step 2: [Import Project to Android Studio](http://developer.android.com/intl/ja/sdk/installing/migrate.html#migrate)
+      
+# Dependencies      
 - com.android.support:appcompat-v7:21.0.3
 
 ## Alexandria
